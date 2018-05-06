@@ -17,8 +17,26 @@ namespace ngoenGirlFriend
         protected void Page_Load(object sender, EventArgs e)
         {
             //girls = girlModel.getGirlFriends();
-            girlRepeater.DataSource = girlModel.getGirlFriends();
-            girlRepeater.DataBind();
+            if (!IsPostBack)
+            {
+                string provinceid = Request.QueryString["provinceid"];
+                string search = Request.QueryString["search"];
+                if (provinceid != null && provinceid != "")
+                {
+                    girlRepeater.DataSource = girlModel.getGirlFriendsByProvince(provinceid);
+                    girlRepeater.DataBind();
+                }
+                else if(search!=null && search !="")
+                {
+                    girlRepeater.DataSource = girlModel.searchGirlFriend(search);
+                    girlRepeater.DataBind();
+                }
+                else
+                {
+                    girlRepeater.DataSource = girlModel.getGirlFriends();
+                    girlRepeater.DataBind();
+                }
+            }
 
             
 

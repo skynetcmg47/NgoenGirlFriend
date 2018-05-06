@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace ngoenGirlFriend
 {
-    public partial class master : System.Web.UI.MasterPage
+    public partial class Error : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

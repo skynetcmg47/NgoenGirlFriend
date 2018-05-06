@@ -24,6 +24,7 @@ namespace ngoenGirlFriend.Account
             {
                 Bean.User userBean = accountModel.getUserSession();
                 Session["fullName"] = userBean.FullName1;
+                Session["userid"] = userBean.Userid;
                 Session["userImageUrl"] = userBean.ImageUrl;
                 Response.Redirect("../Default.aspx");
             }

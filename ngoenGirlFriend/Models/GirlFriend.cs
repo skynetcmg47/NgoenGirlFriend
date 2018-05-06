@@ -10,7 +10,7 @@ namespace ngoenGirlFriend.Models
     public class GirlFriend
     {
         SqlConnection sql = new SqlConnection();
-        
+
         ArrayList girls = new ArrayList();
         public DataTable getGirlFriends()
         {
@@ -29,5 +29,55 @@ namespace ngoenGirlFriend.Models
              return girls;*/
             return dt;
         }
+
+        internal DataTable getGirlImage(string id)
+        {
+            DataTable dt = new DataTable();
+            string query = "SELECT * FROM imageurl WHERE girlFriendId = " + id;
+            dt = sql.getData(query);
+            return dt;
+        }
+
+        public DataTable getGirlFriendsByProvince(string provinceid)
+        {
+            DataTable dt = new DataTable();
+            string query = "SELECT * FROM girlFriend WHERE gProvince = " + provinceid;
+            dt = sql.getData(query);
+            return dt;
+        }
+
+        public DataTable searchGirlFriend(string search)
+        {
+            DataTable dt = new DataTable();
+            string query = String.Format("SELECT girlFriendId,gFullName,gStatus,rating,gNote, name FROM girlFriend INNER JOIN Tinhthanh ON girlFriend.gProvince = Tinhthanh.provinceid WHERE gFullName LIKE N'%{0}%' OR name LIKE N'%{0}%'", search);
+            dt = sql.getData(query);
+            return dt;
+        }
+
+        public DataTable getGirlFriend(string id)
+        {
+            Bean.GirlFriend girl = new Bean.GirlFriend();
+            string query = String.Format("SELECT girlFriendId,gFullName,gBirthday,gNote,gStatus,rating,ratingAmount,Phuongxa.name as ward ,Quanhuyen.name as district, Tinhthanh.name as province"
+                                        + " FROM girlFriend INNER JOIN Phuongxa ON girlFriend.gWardid = Phuongxa.wardid"
+                                        + " INNER JOIN Quanhuyen ON girlFriend.gDistrictid = Quanhuyen.districtid"
+                                        + " INNER JOIN Tinhthanh ON girlFriend.gProvince = Tinhthanh.provinceid WHERE girlFriendId = {0}",id);
+            DataTable dt = new DataTable();
+            dt = sql.getData(query);
+            /*girl.ID1 = dt.Rows[0]["girlFriendId"].ToString();
+            girl.FullName = dt.Rows[0]["gFullName"].ToString();
+            girl.BirthDate = dt.Rows[0]["gBirthday"].ToString();
+            girl.Note = dt.Rows[0]["gNote"].ToString();*/
+            //girl.Status = bool(dt.Rows[0]["gStatus"].ToString());
+            return dt;
+        }
+
+        public DataTable getGirlComment(string id)
+        {
+            DataTable dt = new DataTable();
+            string query = String.Format("SELECT TOP 10 fullname,imageurl,commentContent FROM accountUser INNER JOIN comment ON accountUser.userid = comment.userId WHERE girlFriendId={0}", id);
+            dt = sql.getData(query);
+            return dt;
+        }
+
     }
 }

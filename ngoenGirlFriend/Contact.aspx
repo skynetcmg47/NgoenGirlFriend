@@ -1,17 +1,27 @@
 ﻿<%@ Page Title="Contact" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Contact.aspx.cs" Inherits="ngoenGirlFriend.Contact" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <h2><%: Title %>.</h2>
-    <h3>Your contact page.</h3>
+    <div class ="container">
+        <br /><br /><br /><br />
+    <h3>Ngoen Girl Friend.</h3>
     <address>
-        One Microsoft Way<br />
-        Redmond, WA 98052-6399<br />
-        <abbr title="Phone">P:</abbr>
-        425.555.0100
+        Da Nang<br />
+        28/6, Van Cao<br />
+        <abbr title="Phone">Phone:</abbr>
+        0128451545
     </address>
 
     <address>
-        <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-        <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
+        <strong>Trợ giúp:</strong>   <a href="mailto:Support@ngoengirlfiend.com">Support@ngoengirlfiend.com</a><br />
+        <strong>Liên hệ quảng cáo:</strong> <a href="mailto:Marketing@ngoengirlfiend.com">Marketing@ngoengirlfiend.com</a>
     </address>
+    </div>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br /><br /><br />
+    <br />
+    <br />
+    <br />
 </asp:Content>
