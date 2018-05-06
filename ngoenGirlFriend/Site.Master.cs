@@ -65,12 +65,19 @@ namespace ngoenGirlFriend
                     throw new InvalidOperationException("Validation of Anti-XSRF token failed.");
                 }
             }
+            
         }
         Models.address girlAdress = new Models.address();
+        public string fullname;
         protected void Page_Load(object sender, EventArgs e)
         {
             provinceRepeater.DataSource = girlAdress.getProvinces();
             provinceRepeater.DataBind();
+            if (Session["userid"] == null)
+                fullname = "";
+            else
+                fullname = Session["fullname"].ToString();
+
         }
 
         protected void Unnamed_LoggingOut(object sender, LoginCancelEventArgs e)

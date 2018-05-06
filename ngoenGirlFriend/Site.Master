@@ -68,10 +68,16 @@
                         <ul class="nav navbar-nav navbar-right">
                             <li>
                                 <!--<input type="text" class="form-control" style="margin-top: 10px" id="txtSearch" onkeypress="search(event,this)" placeholder="Tìm kiếm" >-->
-                                <asp:TextBox ID="txtSearch" CssClass="form-control" runat="server" style="margin-top: 10px" placeholder="Tìm kiếm" onkeypress="search(event,this)"></asp:TextBox>
+                                <asp:TextBox ID="txtSearch" CssClass="form-control" runat="server" Style="margin-top: 10px" placeholder="Tìm kiếm" onkeypress="search(event,this)"></asp:TextBox>
                             </li>
-
-                            <li><a href="#contact">Account</a></li>
+                            <%if (fullname == "")
+                                { %>
+                            <li><a href="/Account/Login.aspx">Đăng Nhập</a></li>
+                            <%}
+                            else
+                            { %>
+                            <li><a href="/Account/Account.aspx"><%=fullname %></a></li>
+                            <%} %>
                         </ul>
                     </div>
                 </div>
@@ -117,13 +123,11 @@
                 <p style="text-align: right">&copy; <%: DateTime.Now.Year %> -From Nam to Ngoen with love</p>
             </footer>
         </div>
-           <asp:Button ID="btnSearch" Text="" Style="display: none;background: transparent; border: none !important; font-size:0;"  OnClick="btnSearch_Click" runat="server" />
+        <asp:Button ID="btnSearch" Text="" Style="display: none; background: transparent; border: none !important; font-size: 0;" OnClick="btnSearch_Click" runat="server" />
     </form>
     <script>
-        function search(e,t)
-        {
-            if(e.keyCode == 13)
-            {
+        function search(e, t) {
+            if (e.keyCode == 13) {
                 document.getElementById("btnSearch").click();
             }
         }

@@ -13,15 +13,6 @@ namespace ngoenGirlFriend {
     public partial class GirlDetail {
         
         /// <summary>
-        /// profileImage control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Image profileImage;
-        
-        /// <summary>
         /// lbName control.
         /// </summary>
         /// <remarks>
@@ -29,6 +20,24 @@ namespace ngoenGirlFriend {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbName;
+        
+        /// <summary>
+        /// ratingScore control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ratingScore;
+        
+        /// <summary>
+        /// btnRating control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnRating;
         
         /// <summary>
         /// lbgBirthday control.
@@ -47,6 +56,15 @@ namespace ngoenGirlFriend {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label gStatus;
+        
+        /// <summary>
+        /// imageRepeater control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater imageRepeater;
         
         /// <summary>
         /// gNote control.

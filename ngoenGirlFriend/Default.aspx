@@ -48,8 +48,8 @@
 
                         <img src="Content/Image/moutant.jpg" style="height: 200px; width: 97%" />
                         <h3><%#Eval("gFullName") %></h3>
-                        <p>
-                            <%#Eval("gNote") %>
+                        <p>Ngày sinh
+                            <%#Eval("gBirthday") %>
                         </p>
                         <p>
                             <a class="btn btn-default" href="GirlDetail.aspx?id=<%#Eval("girlFriendId") %>">Chi tiết</a>

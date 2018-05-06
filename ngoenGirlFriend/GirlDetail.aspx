@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="GirlDetail.aspx.cs" Inherits="ngoenGirlFriend.GirlDetail" %>
+﻿<%@ Page Title="Detail" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="GirlDetail.aspx.cs" Inherits="ngoenGirlFriend.GirlDetail" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -38,7 +38,7 @@
         <div class="row">
             <div class="col-md-5">
                 <div class="row">
-                    <asp:Image ID="profileImage" runat="server" />
+                    <img id="profileImage" src="<%=sImageUrl %>" style="width:100%;height:250px;"/>
                 </div>
                 <div class="row">
                 </div>
@@ -60,7 +60,27 @@
                     }%> &nbsp;&nbsp;<%=ratingAmount %> votes
 
 
-
+                <br />
+                <div class="row">
+                        <div class="col-md-2">
+                            <asp:DropDownList runat="server" ID="ratingScore" CssClass="form-control">
+                                <asp:ListItem Selected="true" Value="0">N/A</asp:ListItem>
+                                <asp:ListItem Value="1">1</asp:ListItem>
+                                <asp:ListItem Value="2">2</asp:ListItem>
+                                <asp:ListItem Value="3">3</asp:ListItem>
+                                <asp:ListItem Value="4">4</asp:ListItem>
+                                <asp:ListItem Value="5">5</asp:ListItem>
+                                <asp:ListItem Value="6">6</asp:ListItem>
+                                <asp:ListItem Value="7">7</asp:ListItem>
+                                <asp:ListItem Value="8">8</asp:ListItem>
+                                <asp:ListItem Value="9">9</asp:ListItem>
+                                <asp:ListItem Value="10">10</asp:ListItem>
+                            </asp:DropDownList>
+                        </div>
+                    <div class="col-md-1">
+                        <asp:Button runat="server" ID="btnRating" Text="Đánh giá" CssClass="btn btn-default" OnClick="btnRating_Click"/>
+                    </div>
+                    </div>
                 <p>
                     Ngày sinh:
                     <asp:Label runat="server" ID="lbgBirthday"></asp:Label>
@@ -70,6 +90,15 @@
                     Trạng thái:
                     <asp:Label runat="server" ID="gStatus"></asp:Label>
                 </p>
+                <div class="row">
+                    <asp:Repeater runat="server" ID="imageRepeater">
+                        <ItemTemplate>
+                    <div class="col-md-2">
+                        <img src="/Content/Image/<%#Eval("imageurl") %>" style="width=100%;height:50px;" onclick="imageClick(this)"/>
+                    </div>
+                            </ItemTemplate>
+                        </asp:Repeater>
+                </div>
             </div>
         </div>
         <div class="row">
@@ -114,8 +143,8 @@
                         </div>
                         <div class="col-md-10">
                             <h4><%=fullname %></h4>
-                            <asp:TextBox runat="server" ID="txtComment" CssClass="form-control" onkeypress="comment(event,this)" style="height:150px; "></asp:TextBox>
-                            <asp:Button runat="server" ID="btnComment" Text="Comment" CssClass="btn btn-primary" OnClick="btnComment_Click"/>
+                            <asp:TextBox runat="server" ID="txtComment" CssClass="form-control" onkeypress="comment(event,this)" Style="height: 150px;"></asp:TextBox>
+                            <asp:Button runat="server" ID="btnComment" Text="Comment" CssClass="btn btn-primary" OnClick="btnComment_Click" />
                         </div>
                     </div>
                 </div>
@@ -125,12 +154,18 @@
 
     </div>
     <script>
-        function comment(e,t)
-        {
-            if(e.keyCode == 13)
-            {
+        function comment(e, t) {
+            if (e.keyCode == 13) {
                 document.getElementById("btnComment").click();
             }
+        }
+
+        function imageClick(t)
+        {
+            var proimg = document.getElementById("profileImage");
+            //proimg.
+            proimg.src = t.src;
+          
         }
     </script>
 

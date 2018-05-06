@@ -155,14 +155,16 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
+    <Content Include="Account\Account.aspx" />
     <Content Include="Account\Login.aspx" />
-    <Content Include="Account\WebForm1.aspx" />
     <Content Include="Admin\User\Manage.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Image\Account\mod.jpg" />
     <Content Include="Content\Image\Account\admin.jpg" />
+    <Content Include="Content\Image\girl1.jpg" />
+    <Content Include="Content\Image\girl2.jpg" />
     <Content Include="Content\sidebar.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Error.aspx" />
@@ -221,19 +223,19 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Account\Account.aspx.cs">
+      <DependentUpon>Account.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\Account.aspx.designer.cs">
+      <DependentUpon>Account.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Account\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Account\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Account\WebForm1.aspx.cs">
-      <DependentUpon>WebForm1.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Account\WebForm1.aspx.designer.cs">
-      <DependentUpon>WebForm1.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\Admin.master.cs">
       <DependentUpon>Admin.master</DependentUpon>
@@ -299,6 +301,7 @@
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\GirlFriend.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Rating.cs" />
     <Compile Include="Models\SqlConnection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
