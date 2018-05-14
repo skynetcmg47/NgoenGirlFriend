@@ -9,7 +9,7 @@ namespace ngoenGirlFriend.Models
 {
     public class SqlConnection
     {
-        string ketNoi = @"Data Source=DESKTOP-GN3V8MM\SQLEXPRESS;Initial Catalog=ngoenGirlFriend;Integrated Security=True";
+        string ketNoi = @"Data Source=DESKTOP-S1U0R1I\NORO;Initial Catalog=ngoenGirlFriend;Integrated Security=True";
         System.Data.SqlClient.SqlConnection cnn = new System.Data.SqlClient.SqlConnection();
         DataTable dt;
         public SqlConnection()

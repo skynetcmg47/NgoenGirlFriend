@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Collections;
 using System.Data;
+using ngoenGirlFriend.Bean;
 
 namespace ngoenGirlFriend.Models
 {
@@ -12,6 +13,16 @@ namespace ngoenGirlFriend.Models
         SqlConnection sql = new SqlConnection();
 
         ArrayList girls = new ArrayList();
+
+        public DataTable searchGirlFriends(string sText)
+        {
+            DataTable dt = new DataTable();
+            string query = String.Format("SELECT * from girlFriend where  gFullName LIKE N'%{0}%'", sText);
+            dt = sql.getData(query);
+            return dt;
+        }
+
+
         public DataTable getGirlFriends()
         {
             DataTable dt = new DataTable();
@@ -54,6 +65,7 @@ namespace ngoenGirlFriend.Models
             return dt;
         }
 
+
         public DataTable getGirlFriend(string id)
         {
             Bean.GirlFriend girl = new Bean.GirlFriend();
@@ -76,6 +88,61 @@ namespace ngoenGirlFriend.Models
             DataTable dt = new DataTable();
             string query = String.Format("SELECT TOP 10 fullname,imageurl,commentContent FROM accountUser INNER JOIN comment ON accountUser.userid = comment.userId WHERE girlFriendId={0}", id);
             dt = sql.getData(query);
+            return dt;
+        }
+
+        public void deleteGirl(int id)
+        {
+            string query = "DELETE girlFriend where girlFriendID =" + id;
+            sql.excuteNonQuery(query);
+        }
+
+        public int insertGirlFriend(string fullname, int wardid, int districtid, int provinceid, string phone, string email,string birthday, string note)
+        {
+            int result = -1;
+            string query = "insert girlFriend(gFUllName, gWardid, gDistrictid, gProvince, gPhone, gEmail, gBirthday, gNote)"
+               + "values ('"+fullname+ "', '" + wardid + "', '" + districtid + "', '" + provinceid + "', '" + phone + "', '" + email + "', '" + birthday + "', '" + note + "') ";
+            try
+            {
+                result = sql.excuteNonQuery(query);
+            }
+            catch (Exception) { }
+
+            return result;
+        }
+
+        public int updateGirlFriend(int girlfriendID, string fullname, int wardid, int districtid, int provinceid, string phone, string email, string birthday, string note)
+        {
+            int result = -1;
+            string query = "UPDATE girlFriend set gFUllName = '" + fullname + "', gWardid = '" + wardid + "', gDistrictid = '" + districtid + "', gProvince = '" + provinceid + "',"
+                + "gPhone = '" + phone + "', gEmail = '" + email + "', gBirthday = '" + birthday + "', gNote= '" + note + "' where girlFriendID = "+ girlfriendID ;
+            try
+            {
+                result = sql.excuteNonQuery(query);
+            }
+            catch (Exception) { }
+
+            return result;
+        }
+
+        public int getGirlID(string fullname, string phone, string email)
+        {
+            string getgirl = "select * from girlFriend where gFullname='" + fullname + "' and gPhone= '" + phone + "' and gEmail= '" + email + "' ";
+            DataTable girl = sql.getData(getgirl);
+            int girlid = int.Parse(girl.Rows[0]["girlFriendId"].ToString());
+            return girlid;
+        }
+
+        public DataTable getGirlbyID(int id)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                string query = "select * from girlFriend where girlFriendId =" + id;
+                dt = sql.getData(query);
+
+            }catch(Exception) { }
+
             return dt;
         }
 

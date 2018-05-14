@@ -94,7 +94,7 @@
                     <asp:Repeater runat="server" ID="imageRepeater">
                         <ItemTemplate>
                     <div class="col-md-2">
-                        <img src="/Content/Image/<%#Eval("imageurl") %>" style="width=100%;height:50px;" onclick="imageClick(this)"/>
+                        <img src="/Content/Image/<%#Eval("imageurl") %>" style="width:100%;height:50px;" onclick="imageClick(this)"/>
                     </div>
                             </ItemTemplate>
                         </asp:Repeater>
