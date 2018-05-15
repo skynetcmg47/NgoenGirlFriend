@@ -157,6 +157,9 @@
     <Content Include="About.aspx" />
     <Content Include="Account\Account.aspx" />
     <Content Include="Account\Login.aspx" />
+    <Content Include="Admin\GirlFriend\AddGirlFriend.aspx" />
+    <Content Include="Admin\GirlFriend\EditGirlFriend.aspx" />
+    <Content Include="Admin\GirlFriend\ManageGirlFriend.aspx" />
     <Content Include="Admin\User\Manage.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap.css" />
@@ -244,6 +247,27 @@
     <Compile Include="Admin\Admin.master.designer.cs">
       <DependentUpon>Admin.master</DependentUpon>
     </Compile>
+    <Compile Include="Admin\GirlFriend\AddGirlFriend.aspx.cs">
+      <DependentUpon>AddGirlFriend.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\GirlFriend\AddGirlFriend.aspx.designer.cs">
+      <DependentUpon>AddGirlFriend.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\GirlFriend\EditGirlFriend.aspx.cs">
+      <DependentUpon>EditGirlFriend.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\GirlFriend\EditGirlFriend.aspx.designer.cs">
+      <DependentUpon>EditGirlFriend.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\GirlFriend\ManageGirlFriend.aspx.cs">
+      <DependentUpon>ManageGirlFriend.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\GirlFriend\ManageGirlFriend.aspx.designer.cs">
+      <DependentUpon>ManageGirlFriend.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\User\Manage.aspx.cs">
       <DependentUpon>Manage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -264,6 +288,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Bean\address.cs" />
     <Compile Include="Bean\GirlFriend.cs" />
+    <Compile Include="Bean\Image.cs" />
     <Compile Include="Bean\User.cs" />
     <Compile Include="Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
@@ -301,6 +326,7 @@
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\GirlFriend.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\ImageModels.cs" />
     <Compile Include="Models\Rating.cs" />
     <Compile Include="Models\SqlConnection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
