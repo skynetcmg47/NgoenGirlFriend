@@ -118,10 +118,11 @@ namespace ngoenGirlFriend.Admin.User
             {
                 Response.Write("<script>alert('Something went wrong :)')</script>");
                 
-            }
-            
-            
-            
+            }           
+        }
+        protected void Cancel_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Manage.aspx");
         }
     }
 }

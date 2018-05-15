@@ -66,6 +66,7 @@
       <br />
 
     <asp:Button ID="Add" class="btn btn-success" runat="server" Text="Add" OnClick="Add_Click" />
+    <asp:Button ID="Cancel" class="btn" runat="server" Text="Cancel" OnClick="Cancel_Click" style="margin-left:40px"/>
 </div>
 
 
