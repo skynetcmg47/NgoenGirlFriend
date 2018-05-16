@@ -127,6 +127,6 @@ E:\Hoctap\NET\NgoenGirlFriend\ngoenGirlFriend\bin\Microsoft.Owin.Security.Google
 E:\Hoctap\NET\NgoenGirlFriend\ngoenGirlFriend\bin\Microsoft.Owin.Security.Twitter.xml
 E:\Hoctap\NET\NgoenGirlFriend\ngoenGirlFriend\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 E:\Hoctap\NET\NgoenGirlFriend\ngoenGirlFriend\bin\Microsoft.Owin.Security.OAuth.xml
-E:\Hoctap\NET\NgoenGirlFriend\ngoenGirlFriend\obj\Debug\ngoenGirlFriend.csprojResolveAssemblyReference.cache
 E:\Hoctap\NET\NgoenGirlFriend\ngoenGirlFriend\obj\Debug\ngoenGirlFriend.dll
 E:\Hoctap\NET\NgoenGirlFriend\ngoenGirlFriend\obj\Debug\ngoenGirlFriend.pdb
+E:\Hoctap\NET\NgoenGirlFriend\ngoenGirlFriend\obj\Debug\ngoenGirlFriend.csprojResolveAssemblyReference.cache

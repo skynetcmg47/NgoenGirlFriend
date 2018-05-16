@@ -31,6 +31,15 @@ namespace ngoenGirlFriend.Admin.GirlFriend {
         protected global::System.Web.UI.WebControls.TextBox txtFullname;
         
         /// <summary>
+        /// RequiredFieldValidator1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
+        
+        /// <summary>
         /// txtPhone control.
         /// </summary>
         /// <remarks>
@@ -47,6 +56,15 @@ namespace ngoenGirlFriend.Admin.GirlFriend {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtEmail;
+        
+        /// <summary>
+        /// datepicker control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox datepicker;
         
         /// <summary>
         /// txtGhiChu control.
@@ -85,6 +103,15 @@ namespace ngoenGirlFriend.Admin.GirlFriend {
         protected global::System.Web.UI.WebControls.DropDownList DropDownList3;
         
         /// <summary>
+        /// lblThongbaoanh control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblThongbaoanh;
+        
+        /// <summary>
         /// FileUpload7 control.
         /// </summary>
         /// <remarks>
@@ -112,12 +139,12 @@ namespace ngoenGirlFriend.Admin.GirlFriend {
         protected global::System.Web.UI.WebControls.Repeater imageRepeater;
         
         /// <summary>
-        /// txtEdit control.
+        /// btnEdit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button txtEdit;
+        protected global::System.Web.UI.WebControls.Button btnEdit;
     }
 }

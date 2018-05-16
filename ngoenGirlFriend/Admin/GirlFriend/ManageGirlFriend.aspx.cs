@@ -9,8 +9,9 @@ namespace ngoenGirlFriend.Admin.GirlFriend
 {
     public partial class ManageGirlFriend : System.Web.UI.Page
     {
+        public string searchtext = "";
         Models.GirlFriend gf = new Models.GirlFriend();
-
+        
         protected void Page_PreLoad(object sender, EventArgs e)
         {
             try
@@ -29,7 +30,7 @@ namespace ngoenGirlFriend.Admin.GirlFriend
             }
 
         }
-
+        
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -49,7 +50,8 @@ namespace ngoenGirlFriend.Admin.GirlFriend
                 }
             if (Request.QueryString["search"] != null)
             {
-                Repeater1.DataSource = gf.searchGirlFriends(Request.QueryString["search"]);
+                string text = Request.QueryString["search"];
+                Repeater1.DataSource = gf.searchGirlFriends(text);
                 Repeater1.DataBind();
             }
             else
@@ -60,5 +62,9 @@ namespace ngoenGirlFriend.Admin.GirlFriend
 
         }
 
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ManageGirlFriend.aspx?search="+txtSearchString.Text);
+        }
     }
 }

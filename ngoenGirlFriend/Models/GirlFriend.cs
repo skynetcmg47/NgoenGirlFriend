@@ -17,7 +17,7 @@ namespace ngoenGirlFriend.Models
         public DataTable searchGirlFriends(string sText)
         {
             DataTable dt = new DataTable();
-            string query = String.Format("SELECT * from girlFriend where  gFullName LIKE N'%{0}%'", sText);
+            string query = String.Format("SELECT * from girlFriend where  gFullName LIKE N'%{0}%'",sText);
             dt = sql.getData(query);
             return dt;
         }
@@ -101,7 +101,7 @@ namespace ngoenGirlFriend.Models
         {
             int result = -1;
             string query = "insert girlFriend(gFUllName, gWardid, gDistrictid, gProvince, gPhone, gEmail, gBirthday, gNote)"
-               + "values ('"+fullname+ "', '" + wardid + "', '" + districtid + "', '" + provinceid + "', '" + phone + "', '" + email + "', '" + birthday + "', '" + note + "') ";
+               + "values (N'"+fullname+ "', '" + wardid + "', '" + districtid + "', '" + provinceid + "', '" + phone + "', '" + email + "', '" + birthday + "', N'" + note + "') ";
             try
             {
                 result = sql.excuteNonQuery(query);
@@ -114,8 +114,8 @@ namespace ngoenGirlFriend.Models
         public int updateGirlFriend(int girlfriendID, string fullname, int wardid, int districtid, int provinceid, string phone, string email, string birthday, string note)
         {
             int result = -1;
-            string query = "UPDATE girlFriend set gFUllName = '" + fullname + "', gWardid = '" + wardid + "', gDistrictid = '" + districtid + "', gProvince = '" + provinceid + "',"
-                + "gPhone = '" + phone + "', gEmail = '" + email + "', gBirthday = '" + birthday + "', gNote= '" + note + "' where girlFriendID = "+ girlfriendID ;
+            string query = "UPDATE girlFriend set gFUllName = N'" + fullname + "', gWardid = '" + wardid + "', gDistrictid = '" + districtid + "', gProvince = '" + provinceid + "',"
+                + "gPhone = '" + phone + "', gEmail = '" + email + "', gBirthday = '" + birthday + "', gNote= N'" + note + "' where girlFriendID = "+ girlfriendID ;
             try
             {
                 result = sql.excuteNonQuery(query);
@@ -125,12 +125,9 @@ namespace ngoenGirlFriend.Models
             return result;
         }
 
-        public int getGirlID(string fullname, string phone, string email)
+        public DataTable getTopGirl()
         {
-            string getgirl = "select * from girlFriend where gFullname='" + fullname + "' and gPhone= '" + phone + "' and gEmail= '" + email + "' ";
-            DataTable girl = sql.getData(getgirl);
-            int girlid = int.Parse(girl.Rows[0]["girlFriendId"].ToString());
-            return girlid;
+            return sql.getData("select * from girlFriend order by girlFriendId desc");
         }
 
         public DataTable getGirlbyID(int id)

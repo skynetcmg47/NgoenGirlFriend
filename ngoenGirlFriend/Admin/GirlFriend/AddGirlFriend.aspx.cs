@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using ngoenGirlFriend.Bean;
+using System.Data;
 
 namespace ngoenGirlFriend.Admin.GirlFriend
 {
@@ -12,7 +13,7 @@ namespace ngoenGirlFriend.Admin.GirlFriend
     {
         Models.address ad = new Models.address();
         Models.GirlFriend gf = new Models.GirlFriend();
-
+        
         protected void Page_PreLoad(object sender, EventArgs e)
         {
             try
@@ -32,7 +33,7 @@ namespace ngoenGirlFriend.Admin.GirlFriend
 
 
         }
-
+        
         protected void Page_Load(object sender, EventArgs e)
         {
             
@@ -156,7 +157,12 @@ namespace ngoenGirlFriend.Admin.GirlFriend
 
         protected void txtAdd_Click(object sender, EventArgs e)
         {
-            if (getImageurl().Count > 0)
+            if(String.Format("{0}", Request.Form["datepicker"]) == null || String.Format("{0}", Request.Form["datepicker"]) == "")
+            {
+                lblThongbao.Text = "Vui lòng chọn ngày !";
+                lblThongbao.ForeColor = System.Drawing.Color.Red;
+            }
+            else if (getImageurl().Count > 0)
             {
                 try
                 {
@@ -166,7 +172,8 @@ namespace ngoenGirlFriend.Admin.GirlFriend
 
                     if (result > 0)
                     {
-                        int gfid = gf.getGirlID(txtFullname.Text, txtPhone.Text, txtEmail.Text);
+                        DataTable girl = gf.getTopGirl();
+                        int gfid = int.Parse(girl.Rows[0]["girlFriendId"].ToString());
                         im.insertArrayImage(gfid, SaveImage(gfid));
                         lblThongbao.Text = "Thêm Girl Friend thành công !";
                         lblThongbao.ForeColor = System.Drawing.Color.Red;

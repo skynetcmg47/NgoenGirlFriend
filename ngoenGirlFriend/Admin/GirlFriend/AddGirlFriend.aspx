@@ -7,22 +7,32 @@
     <div class="form-group">
       <label for="hoten">Họ tên:</label>
         <asp:TextBox ID="txtFullname" class="form-control" runat="server"></asp:TextBox>
+        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" Font-Bold="True" ForeColor="#FF3300" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="txtFullname"></asp:RequiredFieldValidator>
     </div>
     <div class="form-group">
       <label for="phone">Số điện thoại:</label>
         <asp:TextBox ID="txtPhone" class="form-control" runat="server"></asp:TextBox>
+        <asp:RegularExpressionValidator runat=server 
+            ControlToValidate="txtPhone" 
+            ErrorMessage="Số điện thoại không đúng định dạng" 
+            ValidationExpression="(09|01[2|6|8|9])+([0-9]{8})\b" Font-Bold="True" ForeColor="#FF3300" />
     </div>
     <div class="form-group">
       <label for="email">Email:</label>
         <asp:TextBox ID="txtEmail" class="form-control" runat="server"></asp:TextBox>
+        <asp:RegularExpressionValidator runat=server 
+            ControlToValidate="txtEmail" 
+            ErrorMessage="Email phải có dạng abc@abc.abc" 
+            ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" Font-Bold="True" ForeColor="#FF3300"/>
+
     </div>
     <div class="form-group">
         <label for="datepicker">Ngày sinh</label>
-        <input type="text" id="datepicker" class="form-control" placeholder="Chọn ngày sinh" name="datepicker">
+        <asp:TextBox id="datepicker" class="form-control" name="datepicker" ClientIDMode="Static" runat="server"></asp:TextBox>
     </div>
     <div class="form-group">
         <label for="ghichu">Ghi chú</label>
-        <asp:TextBox ID="txtGhiChu" name="ghichu" class="form-control" runat="server"></asp:TextBox> 
+        <asp:TextBox ID="txtGhiChu" name="ghichu" class="form-control" runat="server" TextMode="MultiLine" Height="150px" ></asp:TextBox> 
     </div>
     <div class="form-group">
     <label for="">Address</label>
@@ -55,6 +65,7 @@
       <br />
 
     <asp:Button ID="txtAdd" class="btn btn-success" runat="server" Text="Thêm" OnClick="txtAdd_Click" />
+        <a href="ManageGirlFriend.aspx" class="btn">Hủy bỏ</a>
 </div>
 
 
