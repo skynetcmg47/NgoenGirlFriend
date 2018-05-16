@@ -26,7 +26,11 @@ namespace ngoenGirlFriend.Account
                 Session["fullName"] = userBean.FullName1;
                 Session["userid"] = userBean.Userid;
                 Session["userImageUrl"] = userBean.ImageUrl;
-                Response.Redirect("../Default.aspx");
+                Session["role"] = userBean.Role;
+                if(userBean.Role == "1")
+                    Response.Redirect("../Admin/GirlFriend/ManageGirlFriend.aspx");
+                else
+                    Response.Redirect("../Default.aspx");
             }
         }
     }

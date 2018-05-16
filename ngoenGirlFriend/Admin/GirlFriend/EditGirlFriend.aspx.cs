@@ -70,7 +70,11 @@ namespace ngoenGirlFriend.Admin.GirlFriend
 
                         DataTable listImage = im.getImagebyGFId(girlid);
 
-                        sImageUrl = "/Content/Image/" + listImage.Rows[0]["imageurl"].ToString();
+                        //sImageUrl = "/Content/Image/" + listImage.Rows[0]["imageurl"].ToString();
+                        if (listImage.Rows.Count >0)
+                            sImageUrl = "/Content/Image/" + listImage.Rows[0]["imageurl"].ToString();
+                        else
+                            sImageUrl = "/Content/Image/girl1.jpg";
                         imageRepeater.DataSource = listImage;
                         imageRepeater.DataBind();
                     }
@@ -132,8 +136,8 @@ namespace ngoenGirlFriend.Admin.GirlFriend
         #region Events
         protected void txtEdit_Click(object sender, EventArgs e)
         {
-                try
-                {
+               // try
+               // {
                     int girlid = gf.getGirlID(txtFullname.Text,txtPhone.Text, txtEmail.Text);
                     int result = gf.updateGirlFriend(girlid,txtFullname.Text, int.Parse(DropDownList3.SelectedValue.ToString()), int.Parse(DropDownList2.SelectedValue.ToString()), int.Parse(DropDownList1.SelectedValue.ToString()), txtPhone.Text, txtEmail.Text, String.Format("{0}", Request.Form["datepicker"]), txtGhiChu.Text);
 
@@ -147,12 +151,12 @@ namespace ngoenGirlFriend.Admin.GirlFriend
                         lblThongbao.Text = "Sửa Girl Friend thất bại !";
                         lblThongbao.ForeColor = System.Drawing.Color.Red;
                     }
-                }
-                catch (Exception ex)
-                {
-                    lblThongbao.Text = "Fail ! " + ex.Message;
-                    lblThongbao.ForeColor = System.Drawing.Color.Red;
-                }
+              //  }
+               // catch (Exception ex)
+               // {
+              //      lblThongbao.Text = "Fail ! " + ex.Message;
+              //      lblThongbao.ForeColor = System.Drawing.Color.Red;
+              //  }
         }
 
         protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)

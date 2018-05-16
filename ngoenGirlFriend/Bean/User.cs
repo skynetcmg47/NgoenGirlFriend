@@ -7,7 +7,7 @@ namespace ngoenGirlFriend.Bean
 {
     public class User
     {
-        string userName,passWord,FullName,birthDate,phone,email,imageUrl,userid;
+        string userName,passWord,FullName,birthDate,phone,email,imageUrl,userid,role;
         address uaddress;
 
         public string BirthDate
@@ -124,6 +124,19 @@ namespace ngoenGirlFriend.Bean
             set
             {
                 userid = value;
+            }
+        }
+
+        public string Role
+        {
+            get
+            {
+                return role;
+            }
+
+            set
+            {
+                role = value;
             }
         }
     }

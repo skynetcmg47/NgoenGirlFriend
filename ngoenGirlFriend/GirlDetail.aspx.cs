@@ -46,7 +46,10 @@ namespace ngoenGirlFriend
             lbName.Text = dt.Rows[0]["gFullName"].ToString();
             lbgBirthday.Text = dt.Rows[0]["gBirthday"].ToString();
             gStatus.Text = dt.Rows[0]["gStatus"].ToString();
-            sImageUrl = "/Content/Image/"+ imagedt.Rows[0]["imageurl"].ToString();
+            if (imagedt.Rows.Count >0)
+                sImageUrl = "/Content/Image/" + imagedt.Rows[0]["imageurl"].ToString();
+            else
+                sImageUrl = "/Content/Image/girl1.jpg";
             gNote.Text = dt.Rows[0]["gNote"].ToString();
 
             rating = double.Parse(dt.Rows[0]["rating"].ToString());

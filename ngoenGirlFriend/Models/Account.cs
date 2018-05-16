@@ -19,6 +19,7 @@ namespace ngoenGirlFriend.Models
                 user.FullName1 = dt.Rows[0][0].ToString();
                 user.ImageUrl = dt.Rows[0][1].ToString();
                 user.Userid = dt.Rows[0]["userid"].ToString();
+                user.Role = dt.Rows[0]["roleId"].ToString();
                 return int.Parse(dt.Rows[0][2].ToString());
             }
             return -1;            
