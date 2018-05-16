@@ -7,17 +7,18 @@
     <div class="form-group">
       <label for="username">Username:</label>
         <asp:TextBox ID="txtUsername" class="form-control" runat="server"></asp:TextBox>
+        
         <asp:RequiredFieldValidator runat="server" ControlToValidate="txtUsername" ErrorMessage="Please choose a username!" ID="RequireUserName" ForeColor="Red" />
     </div>
 
     <div class="form-group">
       <label for="password">Password:</label>
-        <asp:TextBox ID="txtPassword" class="form-control" runat="server" TextMode="Password"></asp:TextBox>
+        <asp:TextBox ID="txtPassword" class="form-control" runat="server" type="password"></asp:TextBox>
         <asp:RequiredFieldValidator runat="server" ControlToValidate="txtPassword" ErrorMessage="Please choose a password!" ID="RequirePassword" ForeColor="Red" />
     </div>
     <div class="form-group">
       <label for="repassword">Re-enter password:</label>
-        <asp:TextBox ID="txtRePassword" class="form-control" runat="server" TextMode="Password"></asp:TextBox>
+        <asp:TextBox ID="txtRePassword" class="form-control" runat="server" type="password"></asp:TextBox>
         <asp:CompareValidator ID="CompareValidator1" runat="server" ErrorMessage="Must be same as password!" ControlToCompare="txtPassword" ControlToValidate="txtRePassword" ForeColor="Red"></asp:CompareValidator>
     </div>
     <div class="form-group">
@@ -36,7 +37,7 @@
     </div>
     <div class="form-group">
         <label for="datepicker">Birthdate</label>
-        <input type="text" id="datepicker" class="form-control" placeholder="Chọn ngày sinh" name="datepicker">
+        <asp:TextBox id="datepicker" class="form-control" name="datepicker" ClientIDMode="Static" runat="server"></asp:TextBox>
     </div>
     <div class="form-group">
     <label for="">Address</label>

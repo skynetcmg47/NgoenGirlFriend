@@ -64,9 +64,13 @@ namespace ngoenGirlFriend.Models
         public int insertUser(string username, string password, string fullname, string phone, string imageurl, string email, int roleId, int uWardid, int uDistrictid, int uProvinceid, string birthdate)
         {
             int result = -1;
+            if (imageurl == null || imageurl == "")
+            {
+                imageurl = "noimage.jpg";
+            }           
             string query = String.Format("insert into accountUser(username, password, fullname, phone, imageurl, email, roleId, uWardid, uDistrictid, uProvinceid, birthdate)"
-               + "values ('" + username + "', '" + password + "', '" + fullname + "', '" + phone + "', '" + imageurl + "', '" + email + "', '" + roleId + "', '" + uWardid + "', '" + uDistrictid + "', '" + uProvinceid + "', '" + birthdate + "') ");
-
+                   + "values ('" + username + "', '" + password + "', '" + fullname + "', '" + phone + "', '" + imageurl + "', '" + email + "', '" + roleId + "', '" + uWardid + "', '" + uDistrictid + "', '" + uProvinceid + "', '" + birthdate + "') ");
+            
             result = sql.excuteNonQuery(query);
             return result;
         }
@@ -74,6 +78,7 @@ namespace ngoenGirlFriend.Models
         public int updateUser(int id, string password, string fullname, string phone, string imageurl, string email, int roleId, int uWardid, int uDistrictid, int uProvinceid, string birthdate)
         {
             int result = -1;
+            
             string query = String.Format("UPDATE accountUser set password = '" + password + "', fullname = '" + fullname + "', phone = '" + phone + "',"
                 + "imageurl = '" + imageurl + "', email = '" + email + "', roleId = '" + roleId + "', uWardid= '" + uWardid + "', uDistrictid= '" + uDistrictid + "', uProvinceid= '" + uProvinceid + "', birthdate= '" + birthdate + "' where userid = '{0}'", id);
             
@@ -81,10 +86,11 @@ namespace ngoenGirlFriend.Models
             return result;
         }
 
-        public int getUserID(string username, string fullname, string email)
+        public int getUserID(string username)
         {
+            DataTable user = new DataTable();
             string query = "select * from accountUser where username='" + username+"'";
-            DataTable user = sql.getData(query);
+            user = sql.getData(query);
             int userid = int.Parse(user.Rows[0]["userid"].ToString());
             return userid;
         }

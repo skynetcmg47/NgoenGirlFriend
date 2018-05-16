@@ -40,11 +40,8 @@ namespace ngoenGirlFriend.Admin.User
                         acc.deleteCommentByUser(int.Parse(Request.QueryString["id"].ToString()));
                     }
                     acc.deleteUser(int.Parse(Request.QueryString["id"].ToString()));
-                    Response.Write("<script>alert('Xoá thành công !')</script>");
+                    Response.Write("<script LANGUAGE='JavaScript'>alert('Xoá thành công !')</script>");
                     Response.Redirect("Manage.aspx");
-                    
-
-
                 }
                 catch (Exception)
                 {
@@ -64,6 +61,11 @@ namespace ngoenGirlFriend.Admin.User
                 Repeater1.DataBind();
             }
             
+        }
+
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Manage.aspx?search="+txtSearchString.Text);
         }
     }
 }

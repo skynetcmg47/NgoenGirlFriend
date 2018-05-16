@@ -15,6 +15,7 @@ namespace ngoenGirlFriend.Admin.User
         Models.Account acc = new Models.Account();
         public string birthday;
         public string sImageUrl;
+        public string imageBackup;
         
         protected void Page_PreLoad(object sender, EventArgs e)
         {
@@ -44,13 +45,16 @@ namespace ngoenGirlFriend.Admin.User
                 loadProvince();
                 loadRole();
                 if (id != null && id !="")
-                {
-                    
+                {                  
                     DataTable dt = acc.getUserById(id);
                     if (dt.Rows.Count > 0)
                     {
-                        loadDistrict(int.Parse(dt.Rows[0]["uProvinceid"].ToString()));
-                        loadWard(int.Parse(dt.Rows[0]["uDistrictid"].ToString()));
+                        if (dt.Rows[0]["uProvinceid"]!=null && dt.Rows[0]["uProvinceid"].ToString() != "")
+                        {
+                            loadDistrict(int.Parse(dt.Rows[0]["uProvinceid"].ToString()));
+                            loadWard(int.Parse(dt.Rows[0]["uDistrictid"].ToString()));
+                        }
+                        
                         txtUsername.Text = dt.Rows[0]["username"].ToString();
                         txtPassword.Text = dt.Rows[0]["password"].ToString();
                         txtFullname.Text = dt.Rows[0]["fullname"].ToString();
@@ -61,7 +65,7 @@ namespace ngoenGirlFriend.Admin.User
                         DropDownList2.SelectedValue = dt.Rows[0]["uDistrictid"].ToString();
                         DropDownList1.SelectedValue = dt.Rows[0]["uProvinceid"].ToString();
                         sImageUrl = "/Content/Image/Account/" + dt.Rows[0]["imageurl"].ToString();
-                        birthday = dt.Rows[0]["birthdate"].ToString();
+                        datepicker.Text = dt.Rows[0]["birthdate"].ToString();
                        
                     }
                     else
@@ -75,8 +79,6 @@ namespace ngoenGirlFriend.Admin.User
                     Response.Write("<script>alert('ID is empty !')</script>");
                     
                 }
-
-
             }
         }
 
@@ -131,15 +133,16 @@ namespace ngoenGirlFriend.Admin.User
 
         protected void Edit_Click(object sender, EventArgs e)
         {
-            try
-            {
-            int userid = acc.getUserID(txtUsername.Text, txtFullname.Text, txtEmail.Text);
-            int result = acc.updateUser(userid, txtPassword.Text, txtFullname.Text, txtPhone.Text,
-                        FileUpload1.FileName, txtEmail.Text, int.Parse(DropDownList4.SelectedValue.ToString()),
-                        int.Parse(DropDownList3.SelectedValue.ToString()), int.Parse(DropDownList2.SelectedValue.ToString()),
-                        int.Parse(DropDownList1.SelectedValue.ToString()), String.Format("{0}", Request.Form["datepicker"]));
+            
+                int id = int.Parse(Request.QueryString["id"]);
+                DataTable dt = acc.getUserById(id+"");
+                imageBackup = dt.Rows[0][5].ToString();
+                int result = acc.updateUser(id, txtPassword.Text, txtFullname.Text, txtPhone.Text,
+                            imageBackup, txtEmail.Text, int.Parse(DropDownList4.SelectedValue.ToString()),
+                            int.Parse(DropDownList3.SelectedValue.ToString()), int.Parse(DropDownList2.SelectedValue.ToString()),
+                            int.Parse(DropDownList1.SelectedValue.ToString()), String.Format("{0}", Request.Form["datepicker"]));
 
-            if (result > 0)
+                if (result > 0)
                 {
                     Response.Write("<script>alert('Success')</script>");
                     Response.Redirect("Manage.aspx");
@@ -147,15 +150,11 @@ namespace ngoenGirlFriend.Admin.User
                 else
                 {
                     Response.Write("<script>alert('Fail!')</script>");
-                    
-                }
-            }
 
-            catch (Exception ex)
-            {
-                Response.Write("<script>alert('Something went wrong!')</script>");
-                
-            }
+                }
+            
+            
+
         }
         protected void Cancel_Click(object sender, EventArgs e)
         {

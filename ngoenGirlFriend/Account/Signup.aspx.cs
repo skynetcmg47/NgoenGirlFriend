@@ -19,6 +19,7 @@ namespace ngoenGirlFriend.Account
             {
                 loadProvince();
                 
+                
             }
         }
         //load to dropdown list

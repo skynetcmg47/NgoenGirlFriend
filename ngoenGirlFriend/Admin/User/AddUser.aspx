@@ -13,7 +13,7 @@
 
     <div class="form-group">
       <label for="password">Password:</label>
-        <asp:TextBox ID="txtPassword" class="form-control" runat="server"></asp:TextBox>
+        <asp:TextBox ID="txtPassword" class="form-control" runat="server" type="password"></asp:TextBox>
         <asp:RequiredFieldValidator runat="server" ControlToValidate="txtPassword"
                                 CssClass="text-danger" ErrorMessage="Please choose a password." />
     </div>
@@ -36,7 +36,7 @@
     </div>
     <div class="form-group">
         <label for="roleId">Role:</label>
-        <asp:DropDownList ID="DropDownList4" AppendDataBoundItems="true" AutoPostBack="true" class="form-control" runat="server">
+        <asp:DropDownList ID="DropDownList4" AppendDataBoundItems="true" class="form-control" runat="server">
                     </asp:DropDownList>
     </div>
     <div class="form-group">

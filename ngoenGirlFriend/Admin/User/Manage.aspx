@@ -29,7 +29,7 @@
                             
 						<div class="pull-right" style="padding-top:20px">
                             <asp:TextBox ID="txtSearchString" name="txtSearch" runat="server"></asp:TextBox>
-                            <a class="btn btn-primary btn-xs" href="Manage.aspx?search=<%=txtSearchString.Text%>"><span class="glyphicon glyphicon-search"></span></a>
+                            <asp:Button ID="btnSearch" runat="server" Text="Search" OnClick="btnSearch_Click" />
 						</div>
 					</div>
 					<table class="table table-hover">

@@ -6,7 +6,7 @@
        
     <div class="form-group">
       <label for="username">Username:</label>
-        <asp:TextBox ID="txtUsername" class="form-control" runat="server" disabled=""></asp:TextBox>
+        <asp:TextBox ID="txtUsername" class="form-control" runat="server" ReadOnly="True" ></asp:TextBox>
     </div>
     <div class="form-group">
       <label for="password">Password:</label>
@@ -24,29 +24,30 @@
     <div class="form-group">
       <label for="email">Email:</label>
         <asp:TextBox ID="txtEmail" class="form-control" runat="server"></asp:TextBox>
+<asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Email is invalid!" ForeColor="Red" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ControlToValidate="txtEmail"></asp:RegularExpressionValidator>
     </div>
     <div class="form-group">
-        <label for="datepicker">Birthdate</label>
-        <input type="text" id="datepicker" class="form-control" placeholder="Chọn ngày sinh" name="datepicker" value="<%=birthday %>" >
+        <label for="datepicker">Birthdate</label>       
+        <asp:TextBox id="datepicker" class="form-control" name="datepicker" ClientIDMode="Static" Text="<%=birthday %>" runat="server"></asp:TextBox>
     </div>
     <div class="form-group">
         <label for="roleId">Role:</label>
-        <asp:DropDownList ID="DropDownList4" AppendDataBoundItems="true" AutoPostBack="true" class="form-control" runat="server">
+        <asp:DropDownList ID="DropDownList4" AppendDataBoundItems="true" class="form-control" runat="server">
                     </asp:DropDownList>
     </div>
     <div class="form-group">
     <label for="">Address</label>
             <div class="row">
                 <div class="col-xs-3 col-md-3">
-                    <asp:DropDownList ID="DropDownList1" AppendDataBoundItems="true" AutoPostBack="true" class="form-control" runat="server" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
+                    <asp:DropDownList ID="DropDownList1" AppendDataBoundItems="true" class="form-control" runat="server" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged" AutoPostBack="True">
                     </asp:DropDownList>
                 </div>
                 <div class="col-xs-3 col-md-3">
-                    <asp:DropDownList ID="DropDownList2" AppendDataBoundItems="true" AutoPostBack="true" class="form-control" runat="server" OnSelectedIndexChanged="DropDownList2_SelectedIndexChanged">
+                    <asp:DropDownList ID="DropDownList2" AppendDataBoundItems="true" class="form-control" runat="server" OnSelectedIndexChanged="DropDownList2_SelectedIndexChanged" AutoPostBack="True">
                     </asp:DropDownList>
                 </div>
                 <div class="col-xs-3 col-md-3">
-                    <asp:DropDownList ID="DropDownList3" AppendDataBoundItems="true" AutoPostBack="true" class="form-control" runat="server">
+                    <asp:DropDownList ID="DropDownList3" AppendDataBoundItems="true" class="form-control" runat="server" AutoPostBack="True">
                     </asp:DropDownList>
                 </div>
             </div>
