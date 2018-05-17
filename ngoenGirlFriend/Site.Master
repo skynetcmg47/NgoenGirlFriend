@@ -56,7 +56,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" runat="server" href="~/">Logo</a>
+                        <a class="navbar-brand" runat="server" href="~/">Ngoen-GirlFriend</a>
                     </div>
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
@@ -72,11 +72,13 @@
                             </li>
                             <%if (fullname == "")
                                 { %>
-                            <li><a href="/Account/Login.aspx">Đăng Nhập</a></li>
+                            <li><a href="/Account/Login.aspx" >Đăng Nhập</a></li>
+                            <li><a href="/Account/Signup.aspx" >Đăng Ký</a></li>
                             <%}
                             else
                             { %>
                             <li><a href="/Account/Account.aspx"><%=fullname %></a></li>
+                            <li><a href="/Account/Logout.aspx">Logout</a></li>
                             <%} %>
                         </ul>
                     </div>

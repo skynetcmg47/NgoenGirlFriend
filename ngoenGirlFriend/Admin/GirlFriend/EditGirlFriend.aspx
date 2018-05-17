@@ -7,22 +7,32 @@
     <div class="form-group">
       <label for="hoten">Họ tên:</label>
         <asp:TextBox ID="txtFullname" class="form-control" runat="server"></asp:TextBox>
+        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" Font-Bold="True" ForeColor="#FF3300" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="txtFullname"></asp:RequiredFieldValidator>
     </div>
     <div class="form-group">
       <label for="phone">Số điện thoại:</label>
         <asp:TextBox ID="txtPhone" class="form-control" runat="server"></asp:TextBox>
+        <asp:RegularExpressionValidator runat=server 
+            ControlToValidate="txtPhone" 
+            ErrorMessage="Đúng định dạng số điện thoại" 
+            ValidationExpression="(09|01[2|6|8|9])+([0-9]{8})\b" Font-Bold="True" ForeColor="#FF3300"/>
     </div>
     <div class="form-group">
       <label for="email">Email:</label>
         <asp:TextBox ID="txtEmail" class="form-control" runat="server"></asp:TextBox>
+        <asp:RegularExpressionValidator runat=server 
+            ControlToValidate="txtEmail" 
+            ErrorMessage="Email phải có dạng abc@abc.abc" 
+            ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" Font-Bold="True" ForeColor="#FF3300"/>
+
     </div>
     <div class="form-group">
         <label for="datepicker">Ngày sinh</label>
-        <input type="text" id="datepicker" class="form-control" placeholder="Chọn ngày sinh" name="datepicker" value="<%=birthday %>" >
+        <asp:TextBox id="datepicker" class="form-control" name="datepicker" ClientIDMode="Static" runat="server"></asp:TextBox>
     </div>
     <div class="form-group">
         <label for="ghichu">Ghi chú</label>
-        <asp:TextBox ID="txtGhiChu" name="ghichu" class="form-control" runat="server"></asp:TextBox> 
+        <asp:TextBox ID="txtGhiChu" name="ghichu" class="form-control" runat="server" TextMode="MultiLine" Height="150px"></asp:TextBox> 
     </div>
     <div class="form-group">
     <label for="">Address</label>
@@ -45,6 +55,8 @@
     <div class="form-group  col-xs-6 col-md-6">
         <label>Hình ảnh</label>
     </div>
+        <br />
+        <asp:Label ID="lblThongbaoanh" runat="server" Text=""></asp:Label>
     <div class="clearfix"></div>
       <br />
 
@@ -89,7 +101,8 @@
                 </div>
             </div>
         </div>
-        <asp:Button ID="txtEdit" class="btn btn-success" runat="server" Text="Sửa" OnClick="txtEdit_Click"  />
+        <asp:Button ID="btnEdit" class="btn btn-success" runat="server" Text="Sửa" OnClick="btnEdit_Click"  />
+        <a href="ManageGirlFriend.aspx" class="btn">Hủy bỏ</a>
 </div>
 
 

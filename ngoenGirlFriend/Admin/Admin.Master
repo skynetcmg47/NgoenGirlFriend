@@ -15,8 +15,8 @@
     <div class="side-menu-container">
         <ul class="nav navbar-nav">
 
-            <li class="active" ><a href="#"><span class="glyphicon glyphicon-user"></span>Quản lý người dùng</a></li>
-            <li><a href="#"><span class="glyphicon glyphicon-th-list"></span>Quản lý bạn gái</a></li>
+            <li class="active" ><a href="/Admin/User/Manage.aspx"><span class="glyphicon glyphicon-user"></span>Quản lý người dùng</a></li>
+            <li><a href="/Admin/GirlFriend/ManageGirlFriend.aspx"><span class="glyphicon glyphicon-th-list"></span>Quản lý bạn gái</a></li>
             
         </ul>
     </div><!-- /.navbar-collapse -->

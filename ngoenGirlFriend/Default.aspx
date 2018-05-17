@@ -13,15 +13,15 @@
             <!-- Wrapper for slides -->
             <div class="carousel-inner">
                 <div class="item active">
-                    <img src="/Content/Image/moutant.jpg" style="height: 360px; width: 100%; z-index: 0;" alt="Los Angeles">
+                    <img src="/Content/Image/girl1.jpg" style="height: 360px; width: 100%; z-index: 0;" alt="Los Angeles">
                 </div>
 
                 <div class="item">
-                    <img src="/Content/Image/moutant.jpg" style="height: 360px; width: 100%; z-index: 0;" alt="Chicago">
+                    <img src="/Content/Image/girl2.jpg" style="height: 360px; width: 100%; z-index: 0;" alt="Chicago">
                 </div>
 
                 <div class="item">
-                    <img src="/Content/Image/moutant.jpg" style="height: 360px; width: 100%; z-index: 0;" alt="New York">
+                    <img src="/Content/Image/d2.jpg" style="height: 360px; width: 100%; z-index: 0;" alt="New York">
                 </div>
             </div>
 
@@ -46,7 +46,7 @@
                     <div class="col-md-4">
 
 
-                        <img src="Content/Image/moutant.jpg" style="height: 200px; width: 97%" />
+                        <img src="Content/Image/<%#Eval("imageurl") %>" style="height: 200px; width: 97%" />
                         <h3><%#Eval("gFullName") %></h3>
                         <p>Ngày sinh
                             <%#Eval("gBirthday") %>

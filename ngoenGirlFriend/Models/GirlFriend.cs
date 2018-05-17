@@ -17,7 +17,7 @@ namespace ngoenGirlFriend.Models
         public DataTable searchGirlFriends(string sText)
         {
             DataTable dt = new DataTable();
-            string query = String.Format("SELECT * from girlFriend where  gFullName LIKE N'%{0}%'", sText);
+            string query = String.Format("SELECT * from girlFriend where  gFullName  LIKE N'%{0}%'", sText);
             dt = sql.getData(query);
             return dt;
         }
@@ -26,18 +26,8 @@ namespace ngoenGirlFriend.Models
         public DataTable getGirlFriends()
         {
             DataTable dt = new DataTable();
-            dt = sql.getData("SELECT * FROM girlFriend");
-            /* for(int i=0;i<dt.Rows.Count;i++)
-             {
-                 Bean.GirlFriend girl = new Bean.GirlFriend();
-                 girl.ID1 = dt.Rows[0][0].ToString();
-                 girl.FullName = dt.Rows[0][1].ToString();
-                 girl.Phone = dt.Rows[0][5].ToString();
-                 girl.BirthDate = dt.Rows[0][7].ToString();
-                 girl.Note = dt.Rows[0][8].ToString();
-                 girls.Add(girl);
-             }
-             return girls;*/
+            dt = sql.getData("SELECT * from girlFriend");
+            
             return dt;
         }
 
@@ -52,7 +42,9 @@ namespace ngoenGirlFriend.Models
         public DataTable getGirlFriendsByProvince(string provinceid)
         {
             DataTable dt = new DataTable();
-            string query = "SELECT * FROM girlFriend WHERE gProvince = " + provinceid;
+            string query = String.Format("SELECT top(1) girlFriend.girlFriendId,girlFriend.gFullName,imageurl.imageurl,gStatus,rating,gNote, name,gBirthday from girlFriend inner join imageurl on " +
+                                            "girlFriend.girlFriendId = imageurl.girlFriendId INNER JOIN Tinhthanh ON girlFriend.gProvince = Tinhthanh.provinceid WHERE  gProvince={0} " +
+                                            " order by imageurl.imageId", provinceid);
             dt = sql.getData(query);
             return dt;
         }
@@ -60,7 +52,9 @@ namespace ngoenGirlFriend.Models
         public DataTable searchGirlFriend(string search)
         {
             DataTable dt = new DataTable();
-            string query = String.Format("SELECT girlFriendId,gFullName,gStatus,rating,gNote, name FROM girlFriend INNER JOIN Tinhthanh ON girlFriend.gProvince = Tinhthanh.provinceid WHERE gFullName LIKE N'%{0}%' OR name LIKE N'%{0}%'", search);
+            string query = String.Format("SELECT top(1) girlFriend.girlFriendId,girlFriend.gFullName,imageurl.imageurl,gStatus,rating,gNote, name,gBirthday from girlFriend inner join imageurl on "+
+                                            "girlFriend.girlFriendId = imageurl.girlFriendId INNER JOIN Tinhthanh ON girlFriend.gProvince = Tinhthanh.provinceid WHERE gFullName LIKE N'%{0}%' OR "+
+                                            "name LIKE N'%{0}%' order by imageurl.imageId", search);
             dt = sql.getData(query);
             return dt;
         }
@@ -72,7 +66,7 @@ namespace ngoenGirlFriend.Models
             string query = String.Format("SELECT girlFriendId,gFullName,gBirthday,gNote,gStatus,rating,ratingAmount,Phuongxa.name as ward ,Quanhuyen.name as district, Tinhthanh.name as province"
                                         + " FROM girlFriend INNER JOIN Phuongxa ON girlFriend.gWardid = Phuongxa.wardid"
                                         + " INNER JOIN Quanhuyen ON girlFriend.gDistrictid = Quanhuyen.districtid"
-                                        + " INNER JOIN Tinhthanh ON girlFriend.gProvince = Tinhthanh.provinceid WHERE girlFriendId = {0}",id);
+                                        + " INNER JOIN Tinhthanh ON girlFriend.gProvince = Tinhthanh.provinceid WHERE girlFriendId = {0}", id);
             DataTable dt = new DataTable();
             dt = sql.getData(query);
             /*girl.ID1 = dt.Rows[0]["girlFriendId"].ToString();
@@ -93,15 +87,20 @@ namespace ngoenGirlFriend.Models
 
         public void deleteGirl(int id)
         {
-            string query = "DELETE girlFriend where girlFriendID =" + id;
+            string query3 = "DELETE FROM comment WHERE girlFriendId=" + id;
+            sql.excuteNonQuery(query3);
+            string query2 = "DELETE FROM imageurl WHERE girlFriendId=" + id;
+            sql.excuteNonQuery(query2);
+            string query = "DELETE girlFriend where girlFriendId =" + id;
             sql.excuteNonQuery(query);
+            
         }
 
-        public int insertGirlFriend(string fullname, int wardid, int districtid, int provinceid, string phone, string email,string birthday, string note)
+        public int insertGirlFriend(string fullname, int wardid, int districtid, int provinceid, string phone, string email, string birthday, string note)
         {
             int result = -1;
-            string query = "insert girlFriend(gFUllName, gWardid, gDistrictid, gProvince, gPhone, gEmail, gBirthday, gNote)"
-               + "values ('"+fullname+ "', '" + wardid + "', '" + districtid + "', '" + provinceid + "', '" + phone + "', '" + email + "', '" + birthday + "', '" + note + "') ";
+            string query = "insert girlFriend(gFUllName, gWardid, gDistrictid, gProvince, gPhone, gEmail, gBirthday, gNote,gStatus,rating,ratingAmount)"
+               + "values (N'" + fullname + "', '" + wardid + "', '" + districtid + "', '" + provinceid + "', '" + phone + "', '" + email + "', '" + birthday + "', N'" + note + "'"+",'True',"+10+","+1+") ";
             try
             {
                 result = sql.excuteNonQuery(query);
@@ -114,8 +113,8 @@ namespace ngoenGirlFriend.Models
         public int updateGirlFriend(int girlfriendID, string fullname, int wardid, int districtid, int provinceid, string phone, string email, string birthday, string note)
         {
             int result = -1;
-            string query = "UPDATE girlFriend set gFUllName = '" + fullname + "', gWardid = '" + wardid + "', gDistrictid = '" + districtid + "', gProvince = '" + provinceid + "',"
-                + "gPhone = '" + phone + "', gEmail = '" + email + "', gBirthday = '" + birthday + "', gNote= '" + note + "' where girlFriendID = "+ girlfriendID ;
+            string query = "UPDATE girlFriend set gFUllName = N'" + fullname + "', gWardid = '" + wardid + "', gDistrictid = '" + districtid + "', gProvince = '" + provinceid + "',"
+                + "gPhone = '" + phone + "', gEmail = '" + email + "', gBirthday = '" + birthday + "', gNote= N'" + note + "' where girlFriendID = " + girlfriendID;
             try
             {
                 result = sql.excuteNonQuery(query);
@@ -125,12 +124,9 @@ namespace ngoenGirlFriend.Models
             return result;
         }
 
-        public int getGirlID(string fullname, string phone, string email)
+        public DataTable getTopGirl()
         {
-            string getgirl = "select * from girlFriend where gFullname='" + fullname + "' and gPhone= '" + phone + "' and gEmail= '" + email + "' ";
-            DataTable girl = sql.getData(getgirl);
-            int girlid = int.Parse(girl.Rows[0]["girlFriendId"].ToString());
-            return girlid;
+            return sql.getData("select * from girlFriend order by girlFriendId desc");
         }
 
         public DataTable getGirlbyID(int id)
@@ -141,7 +137,8 @@ namespace ngoenGirlFriend.Models
                 string query = "select * from girlFriend where girlFriendId =" + id;
                 dt = sql.getData(query);
 
-            }catch(Exception) { }
+            }
+            catch (Exception) { }
 
             return dt;
         }

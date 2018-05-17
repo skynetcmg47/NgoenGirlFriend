@@ -4,12 +4,13 @@ using System.Linq;
 using System.Web;
 using System.Data.SqlClient;
 using System.Data;
+using System.Web.Configuration;
 
 namespace ngoenGirlFriend.Models
 {
     public class SqlConnection
     {
-        string ketNoi = @"Data Source=DESKTOP-GN3V8MM\SQLEXPRESS;Initial Catalog=ngoenGirlFriend;Integrated Security=True";
+        string ketNoi = WebConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
         System.Data.SqlClient.SqlConnection cnn = new System.Data.SqlClient.SqlConnection();
         DataTable dt;
         public SqlConnection()

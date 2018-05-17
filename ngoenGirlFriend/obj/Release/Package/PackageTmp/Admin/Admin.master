@@ -1,0 +1,61 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Admin.master.cs" Inherits="ngoenGirlFriend.Admin.Admin_1" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <link href='<%= ResolveUrl("../Content/sidebar.css")%>'  rel="stylesheet" type="text/css" />
+    <div class="row" style="margin-top:10px">
+    <!-- uncomment code for absolute positioning tweek see top comment in css -->
+    <!-- <div class="absolute-wrapper"> </div> -->
+    <!-- Menu -->
+    <div class="side-menu">
+    
+    <nav class="navbar navbar-default" role="navigation">
+    <!-- Brand and toggle get grouped for better mobile display -->
+
+    <!-- Main Menu -->
+    <div class="side-menu-container">
+        <ul class="nav navbar-nav">
+
+            <li class="active" ><a href="/Admin/User/Manage.aspx"><span class="glyphicon glyphicon-user"></span>Quản lý người dùng</a></li>
+            <li><a href="/Admin/GirlFriend/ManageGirlFriend.aspx"><span class="glyphicon glyphicon-th-list"></span>Quản lý bạn gái</a></li>
+            
+        </ul>
+    </div><!-- /.navbar-collapse -->
+    </nav>
+    
+    </div>
+
+    <!-- Main Content -->
+    <div class="container-fluid">
+        <div class="side-body">
+               <asp:ContentPlaceHolder ID="childContent" runat="server">
+                </asp:ContentPlaceHolder>
+
+            </div>
+     </div>
+    </div>
+   
+    <script>
+        $(function () {
+            $('.navbar-toggle').click(function () {
+                $('.navbar-nav').toggleClass('slide-in');
+                $('.side-body').toggleClass('body-slide-in');
+                $('#search').removeClass('in').addClass('collapse').slideUp(200);
+
+                /// uncomment code for absolute positioning tweek see top comment in css
+                //$('.absolute-wrapper').toggleClass('slide-in');
+
+            });
+
+            // Remove menu for searching
+            $('#search-trigger').click(function () {
+                $('.navbar-nav').removeClass('slide-in');
+                $('.side-body').removeClass('body-slide-in');
+
+                /// uncomment code for absolute positioning tweek see top comment in css
+                //$('.absolute-wrapper').removeClass('slide-in');
+
+            });
+        });
+    </script>
+
+</asp:Content>

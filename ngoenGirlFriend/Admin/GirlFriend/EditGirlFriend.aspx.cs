@@ -16,7 +16,7 @@ namespace ngoenGirlFriend.Admin.GirlFriend
 
         public string birthday;
         public string sImageUrl;
-
+        
         protected void Page_PreLoad(object sender, EventArgs e)
         {
             try
@@ -36,6 +36,7 @@ namespace ngoenGirlFriend.Admin.GirlFriend
 
 
         }
+        
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -45,19 +46,30 @@ namespace ngoenGirlFriend.Admin.GirlFriend
                 string imageid = Request.QueryString["img"];
                 if (id != null)
                 {
-                    if(imageid != null)
+                    int girlid = int.Parse(id);
+                    if (imageid != null)
                     {
+                        DataTable dtimg = im.getImagebyGFId(girlid);
+                        if(dtimg.Rows.Count == 1)
+                        {
+                            lblThongbaoanh.Text = "Mỗi Girl Friend nên có ít nhất 1 ảnh !";
+                            lblThongbaoanh.ForeColor = System.Drawing.Color.Red;
+                        }
+                        else
+                        { 
                         im.deleteImagebyimgId(int.Parse(imageid));
                         Response.Redirect("EditGirlFriend.aspx?id="+id);
-                            
+                        }
                     }
-                    int girlid = int.Parse(id);
+                    
                     loadProvince();
                     DataTable dt = gf.getGirlbyID(girlid);
-                    if(dt.Rows.Count > 0)
+
+                    int provinceid = int.Parse(dt.Rows[0]["gProvince"].ToString()); 
+                    if (dt.Rows.Count > 0)
                     {
-                        loadDistrict(girlid);
-                        loadWard(int.Parse(dt.Rows[0]["gDistrictid"].ToString()));
+                        loadDistrict(provinceid);
+                        loadWard(provinceid);
 
                         txtFullname.Text = dt.Rows[0]["gFullName"].ToString();
                         DropDownList3.SelectedValue = dt.Rows[0]["gWardid"].ToString();
@@ -66,15 +78,11 @@ namespace ngoenGirlFriend.Admin.GirlFriend
                         txtPhone.Text = dt.Rows[0]["gPhone"].ToString();
                         txtEmail.Text = dt.Rows[0]["gEmail"].ToString();
                         txtGhiChu.Text = dt.Rows[0]["gNote"].ToString();
-                        birthday = dt.Rows[0]["gBirthday"].ToString();
+                        datepicker.Text = dt.Rows[0]["gBirthday"].ToString();
 
                         DataTable listImage = im.getImagebyGFId(girlid);
 
-                        //sImageUrl = "/Content/Image/" + listImage.Rows[0]["imageurl"].ToString();
-                        if (listImage.Rows.Count >0)
-                            sImageUrl = "/Content/Image/" + listImage.Rows[0]["imageurl"].ToString();
-                        else
-                            sImageUrl = "/Content/Image/girl1.jpg";
+                        sImageUrl = "/Content/Image/" + listImage.Rows[0]["imageurl"].ToString();
                         imageRepeater.DataSource = listImage;
                         imageRepeater.DataBind();
                     }
@@ -134,15 +142,22 @@ namespace ngoenGirlFriend.Admin.GirlFriend
         #endregion
 
         #region Events
-        protected void txtEdit_Click(object sender, EventArgs e)
+        protected void btnEdit_Click(object sender, EventArgs e)
         {
-               // try
-               // {
-                    int girlid = gf.getGirlID(txtFullname.Text,txtPhone.Text, txtEmail.Text);
+            if (datepicker.Text == null || datepicker.Text == "")
+            {
+                lblThongbao.Text = "Vui lòng chọn ngày !";
+                lblThongbao.ForeColor = System.Drawing.Color.Red;
+            }else { 
+            try
+                {
+                    int girlid = int.Parse(Request.QueryString["id"]);
                     int result = gf.updateGirlFriend(girlid,txtFullname.Text, int.Parse(DropDownList3.SelectedValue.ToString()), int.Parse(DropDownList2.SelectedValue.ToString()), int.Parse(DropDownList1.SelectedValue.ToString()), txtPhone.Text, txtEmail.Text, String.Format("{0}", Request.Form["datepicker"]), txtGhiChu.Text);
 
                     if (result > 0)
                     {
+                        
+                        Response.Redirect("EditGirlFriend.aspx?id="+girlid);
                         lblThongbao.Text = "Sửa Girl Friend thành công !";
                         lblThongbao.ForeColor = System.Drawing.Color.Red;
                     }
@@ -150,13 +165,15 @@ namespace ngoenGirlFriend.Admin.GirlFriend
                     {
                         lblThongbao.Text = "Sửa Girl Friend thất bại !";
                         lblThongbao.ForeColor = System.Drawing.Color.Red;
+                        Response.Redirect("EditGirlFriend.aspx?id=" + girlid);
                     }
-              //  }
-               // catch (Exception ex)
-               // {
-              //      lblThongbao.Text = "Fail ! " + ex.Message;
-              //      lblThongbao.ForeColor = System.Drawing.Color.Red;
-              //  }
+                }
+                catch (Exception ex)
+                {
+                    lblThongbao.Text = "Fail ! " + ex.Message;
+                    lblThongbao.ForeColor = System.Drawing.Color.Red;
+                }
+            }
         }
 
         protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
@@ -178,10 +195,18 @@ namespace ngoenGirlFriend.Admin.GirlFriend
             int girlid = int.Parse(Request.QueryString["id"]);
             if (FileUpload7.FileName != "")
             {
+                DataTable listimg = im.getImagebyGFId(girlid);
+                if(listimg.Rows.Count  == 6)
+                {
+                    lblThongbaoanh.Text = "Mỗi Girl Friend nên tối đa 6 ảnh !";
+                    lblThongbaoanh.ForeColor = System.Drawing.Color.Red;
+                }
+                else { 
                 System.IO.FileInfo f = new System.IO.FileInfo(FileUpload7.FileName);
                 newName = "Girl" + girlid + "-" + Guid.NewGuid().ToString("N") + f.Extension;
                 FileUpload7.SaveAs(Server.MapPath("/") + "Content/Image/" + newName);
                 im.insert(girlid, newName);
+                }
             }
             Response.Redirect("EditGirlFriend.aspx?id="+girlid);
         }

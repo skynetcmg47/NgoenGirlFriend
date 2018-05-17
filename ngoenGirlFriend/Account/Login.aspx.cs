@@ -27,6 +27,7 @@ namespace ngoenGirlFriend.Account
                 Session["userid"] = userBean.Userid;
                 Session["userImageUrl"] = userBean.ImageUrl;
                 Session["role"] = userBean.Role;
+                Session["password"] = userBean.PassWord;
                 if(userBean.Role == "1")
                     Response.Redirect("../Admin/GirlFriend/ManageGirlFriend.aspx");
                 else
